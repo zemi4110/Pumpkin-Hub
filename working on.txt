@@ -1,0 +1,1882 @@
+-- Load libraries safely
+local success, Fluent = pcall(function()
+    return loadstring(game:HttpGet("https://github.com/dawid-scripts/Fluent/releases/latest/download/main.lua"))()
+end)
+if not success then
+    warn("Failed to load Fluent library")
+    return
+end
+
+local success2, SaveManager = pcall(function()
+    return loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/master/Addons/SaveManager.lua"))()
+end)
+if not success2 then
+    warn("Failed to load SaveManager")
+    return
+end
+
+local success3, InterfaceManager = pcall(function()
+    return loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/master/Addons/InterfaceManager.lua"))()
+end)
+if not success3 then
+    warn("Failed to load InterfaceManager")
+    return
+end
+
+-- Create the main window
+local Window = Fluent:CreateWindow({
+    Title = "Pumpkin Hub " .. Fluent.Version,
+    SubTitle = "by zemi",
+    TabWidth = 160,
+    Size = UDim2.fromOffset(580, 460),
+    Acrylic = true,
+    Theme = "Dark",
+    MinimizeKey = Enum.KeyCode.LeftControl
+})
+
+local Tabs = {
+    VRF = Window:AddTab({ Title = "VRF", Icon = "circle-dot" }),
+    RFF = Window:AddTab({ Title = "RFF", Icon = "circle-dot" }),
+    VEF = Window:AddTab({ Title = "VEF", Icon = "circle-dot" }),
+    Settings = Window:AddTab({ Title = "Settings", Icon = "settings" })
+}
+
+local Options = Fluent.Options
+
+-- Notifications
+do
+    Fluent:Notify({
+        Title = "Enjoy your experience using Pumpkin Hub",
+        Content = "made by zemi4110.",
+        Duration = 8
+    })
+
+    Fluent:Notify({
+        Title = "RESET YOUR AVATAR",
+        Content = "RESET YOUR AVATAR UPON EXECUTION TO AVOID BUGS",
+        Duration = 60
+    })
+end
+
+---------------------------------------------------------------------------------
+ Tabs.VEF:AddParagraph({
+        Title = "Value Control",
+        Content = "1 - Most obvious, 6 - Least obvious and 7 to disable."
+    })
+---------------------------------------------------------------------------------
+-- Reusable functions
+local function VEFbigfoot1()
+    local player = game.Players.LocalPlayer
+    local char = player.Character
+    if char then
+        local rl = char:FindFirstChild("RL")
+        local ll = char:FindFirstChild("LL")
+        
+        if rl then
+            rl.Massless = true
+            rl.Size = Vector3.new(4, 5, 4)
+        end
+        
+        if ll then
+            ll.Massless = true
+            ll.Size = Vector3.new(4, 5, 4)
+        end
+    end
+end
+---------------------------------------------------------------------------------
+local function VEFbigfoot2()
+    local player = game.Players.LocalPlayer
+    local char = player.Character
+    if char then
+        local rl = char:FindFirstChild("RL")
+        local ll = char:FindFirstChild("LL")
+        
+        if rl then
+            rl.Massless = true
+            rl.Size = Vector3.new(3.5, 4.5, 3.5)
+        end
+        
+        if ll then
+            ll.Massless = true
+            ll.Size = Vector3.new(3.5, 4.5, 3.5)
+        end
+    end
+end
+---------------------------------------------------------------------------------
+local function VEFbigfoot3()
+    local player = game.Players.LocalPlayer
+    local char = player.Character
+    if char then
+        local rl = char:FindFirstChild("RL")
+        local ll = char:FindFirstChild("LL")
+        
+        if rl then
+            rl.Massless = true
+            rl.Size = Vector3.new(3, 4, 3)
+        end
+        
+        if ll then
+            ll.Massless = true
+            ll.Size = Vector3.new(3, 4, 3)
+        end
+    end
+end
+---------------------------------------------------------------------------------
+local function VEFbigfoot4()
+    local player = game.Players.LocalPlayer
+    local char = player.Character
+    if char then
+        local rl = char:FindFirstChild("RL")
+        local ll = char:FindFirstChild("LL")
+        
+        if rl then
+            rl.Massless = true
+            rl.Size = Vector3.new(2.5, 3.5, 2.5)
+        end
+        
+        if ll then
+            ll.Massless = true
+            ll.Size = Vector3.new(2.5, 3.5, 2.5)
+        end
+    end
+end
+---------------------------------------------------------------------------------
+local function VEFbigfoot5()
+    local player = game.Players.LocalPlayer
+    local char = player.Character
+    if char then
+        local rl = char:FindFirstChild("RL")
+        local ll = char:FindFirstChild("LL")
+        
+        if rl then
+            rl.Massless = true
+            rl.Size = Vector3.new(2, 3, 2)
+        end
+        
+        if ll then
+            ll.Massless = true
+            ll.Size = Vector3.new(2, 3, 2)
+        end
+    end
+end
+---------------------------------------------------------------------------------
+local function VEFbigfoot6()
+    local player = game.Players.LocalPlayer
+    local char = player.Character
+    if char then
+        local rl = char:FindFirstChild("RL")
+        local ll = char:FindFirstChild("LL")
+        
+        if rl then
+            rl.Massless = true
+            rl.Size = Vector3.new(1.5, 2.5, 1.5)
+        end
+        
+        if ll then
+            ll.Massless = true
+            ll.Size = Vector3.new(1.5, 2.5, 1.5)
+        end
+    end
+end
+---------------------------------------------------------------------------------
+local function VEFbigfoot7()
+    local player = game.Players.LocalPlayer
+    local char = player.Character
+    if char then
+        local rl = char:FindFirstChild("RL")
+        local ll = char:FindFirstChild("LL")
+        
+        if rl then
+            rl.Massless = true
+            rl.Size = Vector3.new(1, 2, 1)
+        end
+        
+        if ll then
+            ll.Massless = true
+            ll.Size = Vector3.new(1, 2, 1)
+        end
+    end
+end
+---------------------------------------------------------------------------------
+-- Dropdown
+local Dropdown = Tabs.VEF:AddDropdown("Dropdown", {
+    Title = "BigFoot Picker",
+    Values = {"1", "2", "3", "4", "5", "6", "7"},
+    Multi = false,
+    Default = "7", -- starts disabled
+})
+
+Dropdown:SetValue("7") -- immediately set to value 7
+
+Dropdown:OnChanged(function(Value)
+    print("Dropdown changed:", Value)
+
+    if Value == "1" then
+        VEFigfoot1()
+    elseif Value == "2" then
+        VEFbigfoot2()
+    elseif Value == "3" then
+        VEFbigfoot3()
+    elseif Value == "4" then
+        VEFbigfoot4()
+    elseif Value == "5" then
+        VEFbigfoot5()
+    elseif Value == "6" then
+        VEFbigfoot6()
+    elseif Value == "7" then
+        VEFbigfoot7()
+    end
+end)
+---------------------------------------------------------------------------------
+  Tabs.VEF:AddParagraph({
+        Title = "WARNING WARNING WARNING",
+        Content = "Applying one of these below will get you kicked or BANNED from the game if you havent deleted the anticheat I would NOT advise using anything below without somehow removing the anticheat"
+    })
+---------------------------------------------------------------------------------
+local function VEFbighead1()
+    local player = game.Players.LocalPlayer
+    local char = player.Character
+    if char then
+        local head = char:FindFirstChild("Head")
+        
+        if head then
+            head.Massless = true
+            head.Size = Vector3.new(5, 4, 4)
+        end
+    end
+end
+---------------------------------------------------------------------------------
+local function VEFbighead2()
+    local player = game.Players.LocalPlayer
+    local char = player.Character
+    if char then
+        local head = char:FindFirstChild("Head")
+        
+        if head then
+            head.Massless = true
+            head.Size = Vector3.new(4.5, 3.5, 3.5)
+        end
+    end
+end
+---------------------------------------------------------------------------------
+local function VEFbighead3()
+    local player = game.Players.LocalPlayer
+    local char = player.Character
+    if char then
+        local head = char:FindFirstChild("Head")
+        
+        if head then
+            head.Massless = true
+            head.Size = Vector3.new(4, 3, 3)
+        end
+    end
+end
+---------------------------------------------------------------------------------
+local function VEFbighead4()
+    local player = game.Players.LocalPlayer
+    local char = player.Character
+    if char then
+        local head = char:FindFirstChild("Head")
+        
+        if head then
+            head.Massless = true
+            head.Size = Vector3.new(3.5, 2.5, 2.5)
+        end
+    end
+end
+---------------------------------------------------------------------------------
+local function VEFbighead5()
+    local player = game.Players.LocalPlayer
+    local char = player.Character
+    if char then
+        local head = char:FindFirstChild("Head")
+        
+        if head then
+            head.Massless = true
+            head.Size = Vector3.new(3, 2, 2)
+        end
+    end
+end
+---------------------------------------------------------------------------------
+local function VEFbighead6()
+    local player = game.Players.LocalPlayer
+    local char = player.Character
+    if char then
+        local head = char:FindFirstChild("Head")
+        
+        if head then
+            head.Massless = true
+            head.Size = Vector3.new(2.5, 1.5, 1.5)
+        end
+    end
+end
+---------------------------------------------------------------------------------
+local function VEFbighead7()
+    local player = game.Players.LocalPlayer
+    local char = player.Character
+    if char then
+        local head = char:FindFirstChild("Head")
+        
+        if head then
+            head.Massless = true
+            head.Size = Vector3.new(2, 1, 1)
+        end
+    end
+end
+---------------------------------------------------------------------------------
+-- Dropdown
+local Dropdown = Tabs.VEF:AddDropdown("Dropdown", {
+    Title = "BigHead Picker",
+    Values = {"1", "2", "3", "4", "5", "6", "7"},
+    Multi = false,
+    Default = "7", -- starts disabled
+})
+
+Dropdown:SetValue("7") -- immediately set to value 7
+
+Dropdown:OnChanged(function(Value)
+    print("Dropdown changed:", Value)
+
+    if Value == "1" then
+        VEFbighead1()
+    elseif Value == "2" then
+        VEFbighead2()
+    elseif Value == "3" then
+        VEFbighead3()
+    elseif Value == "4" then
+        VEFbighead4()
+    elseif Value == "5" then
+        VEFbighead5()
+    elseif Value == "6" then
+        VEFbighead6()
+    elseif Value == "7" then
+        VEFbighead7()
+    end
+end)
+---------------------------------------------------------------------------------
+-- Reusable functions
+local function VEFbigtorso1()
+    local player = game.Players.LocalPlayer
+    local char = player.Character
+    if char then
+        local torso = char:FindFirstChild("Torso")
+        
+        if torso then
+            torso.Massless = true
+	    torso.Transparency = 1
+            torso.Size = Vector3.new(5, 5, 4)
+        end
+    end
+end
+---------------------------------------------------------------------------------
+local function VEFbigtorso2()
+    local player = game.Players.LocalPlayer
+    local char = player.Character
+    if char then
+        local torso = char:FindFirstChild("Torso")
+        
+        if torso then
+            torso.Massless = true
+	    torso.Transparency = 1
+            torso.Size = Vector3.new(4.5, 4.5, 3.5)
+        end
+    end
+end
+---------------------------------------------------------------------------------
+local function VEFbigtorso3()
+    local player = game.Players.LocalPlayer
+    local char = player.Character
+    if char then
+        local torso = char:FindFirstChild("Torso")
+        
+        if torso then
+            torso.Massless = true
+	    torso.Transparency = 1
+            torso.Size = Vector3.new(4, 4, 3)
+        end
+    end
+end
+---------------------------------------------------------------------------------
+local function VEFbigtorso4()
+    local player = game.Players.LocalPlayer
+    local char = player.Character
+    if char then
+        local torso = char:FindFirstChild("Torso")
+        
+        if torso then
+            torso.Massless = true
+	    torso.Transparency = 1
+            torso.Size = Vector3.new(3.5, 3.5, 2.5)
+        end
+    end
+end
+---------------------------------------------------------------------------------
+local function VEFbigtorso5()
+    local player = game.Players.LocalPlayer
+    local char = player.Character
+    if char then
+        local torso = char:FindFirstChild("Torso")
+        
+        if torso then
+            torso.Massless = true
+	    torso.Transparency = 1
+            torso.Size = Vector3.new(3, 3, 2)
+        end
+    end
+end
+---------------------------------------------------------------------------------
+local function VEFbigtorso6()
+    local player = game.Players.LocalPlayer
+    local char = player.Character
+    if char then
+        local torso = char:FindFirstChild("Torso")
+        
+        if torso then
+            torso.Massless = true
+	    torso.Transparency = 1
+            torso.Size = Vector3.new(2.5, 2.5, 1.5)
+        end
+    end
+end
+---------------------------------------------------------------------------------
+local function VEFbigtorso7()
+    local player = game.Players.LocalPlayer
+    local char = player.Character
+    if char then
+        local torso = char:FindFirstChild("Torso")
+        
+        if torso then
+            torso.Massless = true
+            torso.Size = Vector3.new(2, 2, 1)
+        end
+    end
+end
+---------------------------------------------------------------------------------
+-- Dropdown
+local Dropdown = Tabs.VEF:AddDropdown("Dropdown", {
+    Title = "BigChest Picker",
+    Values = {"1", "2", "3", "4", "5", "6", "7"},
+    Multi = false,
+    Default = "7", -- starts disabled
+})
+
+Dropdown:SetValue("7") -- immediately set to value 7
+
+Dropdown:OnChanged(function(Value)
+    print("Dropdown changed:", Value)
+
+    if Value == "1" then
+        VEFbigtorso1()
+    elseif Value == "2" then
+        VEFbigtorso2()
+    elseif Value == "3" then
+        VEFbigtorso3()
+    elseif Value == "4" then
+        VEFbigtorso4()
+    elseif Value == "5" then
+        VEFbigtorso5()
+    elseif Value == "6" then
+        VEFbigtorso6()
+    elseif Value == "7" then
+        VEFbigtorso7()
+    end
+end)
+---------------------------------------------------------------------------------
+-- Reusable functions
+local function VEFautocatch1()
+    local player = game.Players.LocalPlayer
+    local char = player.Character
+    if char then
+        local rightarm = char:FindFirstChild("Right Arm")
+        local leftarm = char:FindFirstChild("Left Arm")
+        
+        if rightarm then
+            rightarm.Massless = true
+            rightarm.Size = Vector3.new(4, 5, 4)
+        end
+        
+        if leftarm then
+            leftarm.Massless = true
+            leftarm.Size = Vector3.new(4, 5, 4)
+        end
+    end
+end
+---------------------------------------------------------------------------------
+local function VEFautocatch2()
+    local player = game.Players.LocalPlayer
+    local char = player.Character
+    if char then
+        local rightarm = char:FindFirstChild("Right Arm")
+        local leftarm = char:FindFirstChild("Left Arm")
+        
+        if rightarm then
+            rightarm.Massless = true
+            rightarm.Size = Vector3.new(3.5, 4.5, 3.5)
+        end
+        
+        if leftarm then
+            leftarm.Massless = true
+            leftarm.Size = Vector3.new(3.5, 4.5, 3.5)
+        end
+    end
+end
+---------------------------------------------------------------------------------
+local function VEFautocatch3()
+    local player = game.Players.LocalPlayer
+    local char = player.Character
+    if char then
+        local rightarm = char:FindFirstChild("Right Arm")
+        local leftarm = char:FindFirstChild("Left Arm")
+        
+        if rightarm then
+            rightarm.Massless = true
+            rightarm.Size = Vector3.new(3, 4, 3)
+        end
+        
+        if leftarm then
+            leftarm.Massless = true
+            leftarm.Size = Vector3.new(3, 4, 3)
+        end
+    end
+end
+---------------------------------------------------------------------------------
+local function VEFautocatch4()
+    local player = game.Players.LocalPlayer
+    local char = player.Character
+    if char then
+        local rightarm = char:FindFirstChild("Right Arm")
+        local leftarm = char:FindFirstChild("Left Arm")
+        
+        if rightarm then
+            rightarm.Massless = true
+            rightarm.Size = Vector3.new(2.5, 3.5, 2.5)
+        end
+        
+        if leftarm then
+            leftarm.Massless = true
+            leftarm.Size = Vector3.new(2.5, 3.5, 2.5)
+        end
+    end
+end
+---------------------------------------------------------------------------------
+local function VEFautocatch5()
+    local player = game.Players.LocalPlayer
+    local char = player.Character
+    if char then
+        local rightarm = char:FindFirstChild("Right Arm")
+        local leftarm = char:FindFirstChild("Left Arm")
+        
+        if rightarm then
+            rightarm.Massless = true
+            rightarm.Size = Vector3.new(2, 3, 2)
+        end
+        
+        if leftarm then
+            leftarm.Massless = true
+            leftarm.Size = Vector3.new(2, 3, 2)
+        end
+    end
+end
+---------------------------------------------------------------------------------
+local function VEFautocatch6()
+    local player = game.Players.LocalPlayer
+    local char = player.Character
+    if char then
+        local rightarm = char:FindFirstChild("Right Arm")
+        local leftarm = char:FindFirstChild("Left Arm")
+        
+        if rightarm then
+            rightarm.Massless = true
+            rightarm.Size = Vector3.new(1.5, 2.5, 1.5)
+        end
+        
+        if leftarm then
+            leftarm.Massless = true
+            leftarm.Size = Vector3.new(1.5, 2.5, 1.5)
+        end
+    end
+end
+---------------------------------------------------------------------------------
+local function VEFautocatch7()
+    local player = game.Players.LocalPlayer
+    local char = player.Character
+    if char then
+        local rightarm = char:FindFirstChild("Right Arm")
+        local leftarm = char:FindFirstChild("Left Arm")
+        
+        if rightarm then
+            rightarm.Massless = true
+            rightarm.Size = Vector3.new(1, 2, 1)
+        end
+        
+        if leftarm then
+            leftarm.Massless = true
+            leftarm.Size = Vector3.new(1, 2, 1)
+        end
+    end
+end
+---------------------------------------------------------------------------------
+-- Dropdown
+local Dropdown = Tabs.VEF:AddDropdown("Dropdown", {
+    Title = "AutoCatch Picker",
+    Values = {"1", "2", "3", "4", "5", "6", "7"},
+    Multi = false,
+    Default = "7", -- starts disabled
+})
+
+Dropdown:SetValue("7") -- immediately set to value 7
+
+Dropdown:OnChanged(function(Value)
+    print("Dropdown changed:", Value)
+
+    if Value == "1" then
+        VEFautocatch1()
+    elseif Value == "2" then
+        VEFautocatch2()
+    elseif Value == "3" then
+        VEFautocatch3()
+    elseif Value == "4" then
+        VEFautocatch4()
+    elseif Value == "5" then
+        VEFautocatch5()
+    elseif Value == "6" then
+        VEFautocatch6()
+    elseif Value == "7" then
+        VEFautocatch7()
+    end
+end)
+--------------------------------------------------------------------------------
+ Tabs.RFF:AddParagraph({
+        Title = "Value Control",
+        Content = "1 - Most obvious, 6 - Least obvious and 7 to disable."
+    })
+---------------------------------------------------------------------------------
+local function RFFbigfoot1()
+    local player = game.Players.LocalPlayer
+    local char = player.Character
+    if char then
+        local rl = char:FindFirstChild("RL")
+        local ll = char:FindFirstChild("LL")
+        
+        if rl then
+            rl.Massless = true
+            rl.Size = Vector3.new(4, 5, 4)
+        end
+        
+        if ll then
+            ll.Massless = true
+            ll.Size = Vector3.new(4, 5, 4)
+        end
+    end
+end
+---------------------------------------------------------------------------------
+local function RFFbigfoot2()
+    local player = game.Players.LocalPlayer
+    local char = player.Character
+    if char then
+        local rl = char:FindFirstChild("RL")
+        local ll = char:FindFirstChild("LL")
+        
+        if rl then
+            rl.Massless = true
+            rl.Size = Vector3.new(3.5, 4.5, 3.5)
+        end
+        
+        if ll then
+            ll.Massless = true
+            ll.Size = Vector3.new(3.5, 4.5, 3.5)
+        end
+    end
+end
+---------------------------------------------------------------------------------
+local function RFFbigfoot3()
+    local player = game.Players.LocalPlayer
+    local char = player.Character
+    if char then
+        local rl = char:FindFirstChild("RL")
+        local ll = char:FindFirstChild("LL")
+        
+        if rl then
+            rl.Massless = true
+            rl.Size = Vector3.new(3, 4, 3)
+        end
+        
+        if ll then
+            ll.Massless = true
+            ll.Size = Vector3.new(3, 4, 3)
+        end
+    end
+end
+---------------------------------------------------------------------------------
+local function RFFbigfoot4()
+    local player = game.Players.LocalPlayer
+    local char = player.Character
+    if char then
+        local rl = char:FindFirstChild("RL")
+        local ll = char:FindFirstChild("LL")
+        
+        if rl then
+            rl.Massless = true
+            rl.Size = Vector3.new(2.5, 3.5, 2.5)
+        end
+        
+        if ll then
+            ll.Massless = true
+            ll.Size = Vector3.new(2.5, 3.5, 2.5)
+        end
+    end
+end
+---------------------------------------------------------------------------------
+local function RFFbigfoot5()
+    local player = game.Players.LocalPlayer
+    local char = player.Character
+    if char then
+        local rl = char:FindFirstChild("RL")
+        local ll = char:FindFirstChild("LL")
+        
+        if rl then
+            rl.Massless = true
+            rl.Size = Vector3.new(2, 3, 2)
+        end
+        
+        if ll then
+            ll.Massless = true
+            ll.Size = Vector3.new(2, 3, 2)
+        end
+    end
+end
+---------------------------------------------------------------------------------
+local function RFFbigfoot6()
+    local player = game.Players.LocalPlayer
+    local char = player.Character
+    if char then
+        local rl = char:FindFirstChild("RL")
+        local ll = char:FindFirstChild("LL")
+        
+        if rl then
+            rl.Massless = true
+            rl.Size = Vector3.new(1.5, 2.5, 1.5)
+        end
+        
+        if ll then
+            ll.Massless = true
+            ll.Size = Vector3.new(1.5, 2.5, 1.5)
+        end
+    end
+end
+---------------------------------------------------------------------------------
+local function RFFbigfoot7()
+    local player = game.Players.LocalPlayer
+    local char = player.Character
+    if char then
+        local rl = char:FindFirstChild("RL")
+        local ll = char:FindFirstChild("LL")
+        
+        if rl then
+            rl.Massless = true
+            rl.Size = Vector3.new(1, 2, 1)
+        end
+        
+        if ll then
+            ll.Massless = true
+            ll.Size = Vector3.new(1, 2, 1)
+        end
+    end
+end
+---------------------------------------------------------------------------------
+-- Dropdown
+local Dropdown = Tabs.RFF:AddDropdown("Dropdown", {
+    Title = "BigFoot Picker",
+    Values = {"1", "2", "3", "4", "5", "6", "7"},
+    Multi = false,
+    Default = "7", -- starts disabled
+})
+
+Dropdown:SetValue("7") -- immediately set to value 7
+
+Dropdown:OnChanged(function(Value)
+    print("Dropdown changed:", Value)
+
+    if Value == "1" then
+        RFFbigfoot1()
+    elseif Value == "2" then
+        RFFbigfoot2()
+    elseif Value == "3" then
+        RFFbigfoot3()
+    elseif Value == "4" then
+        RFFbigfoot4()
+    elseif Value == "5" then
+        RFFbigfoot5()
+    elseif Value == "6" then
+        RFFbigfoot6()
+    elseif Value == "7" then
+        RFFbigfoot7()
+    end
+end)
+---------------------------------------------------------------------------------
+local function RFFbighead1()
+    local player = game.Players.LocalPlayer
+    local char = player.Character
+    if char then
+        local head = char:FindFirstChild("Head")
+        
+        if head then
+            head.Massless = true
+	    head.CanCollide = false
+	    head.Transparency = 1
+            head.Size = Vector3.new(5, 4, 4)
+        end
+    end
+end
+---------------------------------------------------------------------------------
+local function RFFbighead2()
+    local player = game.Players.LocalPlayer
+    local char = player.Character
+    if char then
+        local head = char:FindFirstChild("Head")
+        
+        if head then
+            head.Massless = true
+	    head.CanCollide = false
+	    head.Transparency = 1
+            head.Size = Vector3.new(4.5, 3.5, 3.5)
+        end
+    end
+end
+---------------------------------------------------------------------------------
+local function RFFbighead3()
+    local player = game.Players.LocalPlayer
+    local char = player.Character
+    if char then
+        local head = char:FindFirstChild("Head")
+        
+        if head then
+            head.Massless = true
+	    head.CanCollide = false
+	    head.Transparency = 1
+            head.Size = Vector3.new(4, 3, 3)
+        end
+    end
+end
+---------------------------------------------------------------------------------
+local function RFFbighead4()
+    local player = game.Players.LocalPlayer
+    local char = player.Character
+    if char then
+        local head = char:FindFirstChild("Head")
+        
+        if head then
+            head.Massless = true
+	    head.CanCollide = false
+	    head.Transparency = 1
+            head.Size = Vector3.new(3.5, 2.5, 2.5)
+        end
+    end
+end
+---------------------------------------------------------------------------------
+local function RFFbighead5()
+    local player = game.Players.LocalPlayer
+    local char = player.Character
+    if char then
+        local head = char:FindFirstChild("Head")
+        
+        if head then
+            head.Massless = true
+	    head.CanCollide = false
+	    head.Transparency = 1
+            head.Size = Vector3.new(3, 2, 2)
+        end
+    end
+end
+---------------------------------------------------------------------------------
+local function RFFbighead6()
+    local player = game.Players.LocalPlayer
+    local char = player.Character
+    if char then
+        local head = char:FindFirstChild("Head")
+        
+        if head then
+            head.Massless = true
+	    head.CanCollide = false
+	    head.Transparency = 1
+            head.Size = Vector3.new(2.5, 1.5, 1.5)
+        end
+    end
+end
+---------------------------------------------------------------------------------
+local function RFFbighead7()
+    local player = game.Players.LocalPlayer
+    local char = player.Character
+    if char then
+        local head = char:FindFirstChild("Head")
+        
+        if head then
+            head.Massless = true
+            head.Size = Vector3.new(2, 1, 1)
+        end
+    end
+end
+---------------------------------------------------------------------------------
+-- Dropdown
+local Dropdown = Tabs.RFF:AddDropdown("Dropdown", {
+    Title = "BigHead Picker",
+    Values = {"1", "2", "3", "4", "5", "6", "7"},
+    Multi = false,
+    Default = "7", -- starts disabled
+})
+
+Dropdown:SetValue("7") -- immediately set to value 7
+
+Dropdown:OnChanged(function(Value)
+    print("Dropdown changed:", Value)
+
+    if Value == "1" then
+        RFFbighead1()
+    elseif Value == "2" then
+        RFFbighead2()
+    elseif Value == "3" then
+        RFFbighead3()
+    elseif Value == "4" then
+        RFFbighead4()
+    elseif Value == "5" then
+        RFFbighead5()
+    elseif Value == "6" then
+        RFFbighead6()
+    elseif Value == "7" then
+        RFFbighead7()
+    end
+end)
+---------------------------------------------------------------------------------
+-- Reusable functions
+local function RFFbigtorso1()
+    local player = game.Players.LocalPlayer
+    local char = player.Character
+    if char then
+        local torso = char:FindFirstChild("T")
+        
+        if torso then
+            torso.Massless = true
+	    torso.Transparency = 1
+            torso.Size = Vector3.new(5, 5, 4)
+        end
+    end
+end
+---------------------------------------------------------------------------------
+local function RFFbigtorso2()
+    local player = game.Players.LocalPlayer
+    local char = player.Character
+    if char then
+        local torso = char:FindFirstChild("T")
+        
+        if torso then
+            torso.Massless = true
+	    torso.Transparency = 1
+            torso.Size = Vector3.new(4.5, 4.5, 3.5)
+        end
+    end
+end
+---------------------------------------------------------------------------------
+local function RFFbigtorso3()
+    local player = game.Players.LocalPlayer
+    local char = player.Character
+    if char then
+        local torso = char:FindFirstChild("T")
+        
+        if torso then
+            torso.Massless = true
+	    torso.Transparency = 1
+            torso.Size = Vector3.new(4, 4, 3)
+        end
+    end
+end
+---------------------------------------------------------------------------------
+local function RFFbigtorso4()
+    local player = game.Players.LocalPlayer
+    local char = player.Character
+    if char then
+        local torso = char:FindFirstChild("T")
+        
+        if torso then
+            torso.Massless = true
+	    torso.Transparency = 1
+            torso.Size = Vector3.new(3.5, 3.5, 2.5)
+        end
+    end
+end
+---------------------------------------------------------------------------------
+local function RFFbigtorso5()
+    local player = game.Players.LocalPlayer
+    local char = player.Character
+    if char then
+        local torso = char:FindFirstChild("T")
+        
+        if torso then
+            torso.Massless = true
+	    torso.Transparency = 1
+            torso.Size = Vector3.new(3, 3, 2)
+        end
+    end
+end
+---------------------------------------------------------------------------------
+local function RFFbigtorso6()
+    local player = game.Players.LocalPlayer
+    local char = player.Character
+    if char then
+        local torso = char:FindFirstChild("T")
+        
+        if torso then
+            torso.Massless = true
+	    torso.Transparency = 1
+            torso.Size = Vector3.new(2.5, 2.5, 1.5)
+        end
+    end
+end
+---------------------------------------------------------------------------------
+local function RFFbigtorso7()
+    local player = game.Players.LocalPlayer
+    local char = player.Character
+    if char then
+        local torso = char:FindFirstChild("T")
+        
+        if torso then
+            torso.Massless = true
+            torso.Size = Vector3.new(2, 2, 1)
+        end
+    end
+end
+---------------------------------------------------------------------------------
+-- Dropdown
+local Dropdown = Tabs.RFF:AddDropdown("Dropdown", {
+    Title = "BigChest Picker",
+    Values = {"1", "2", "3", "4", "5", "6", "7"},
+    Multi = false,
+    Default = "7", -- starts disabled
+})
+
+Dropdown:SetValue("7") -- immediately set to value 7
+
+Dropdown:OnChanged(function(Value)
+    print("Dropdown changed:", Value)
+
+    if Value == "1" then
+        RFFbigtorso1()
+    elseif Value == "2" then
+        RFFbigtorso2()
+    elseif Value == "3" then
+        RFFbigtorso3()
+    elseif Value == "4" then
+        RFFbigtorso4()
+    elseif Value == "5" then
+        RFFbigtorso5()
+    elseif Value == "6" then
+        RFFbigtorso6()
+    elseif Value == "7" then
+        RFFbigtorso7()
+    end
+end)
+---------------------------------------------------------------------------------
+  Tabs.RFF:AddParagraph({
+        Title = "WARNING WARNING WARNING",
+        Content = "Applying one of these below will get you kicked or BANNED from the game if you havent deleted the anticheat I would NOT advise using anything below without somehow removing the anticheat"
+    })
+---------------------------------------------------------------------------------
+-- Reusable functions
+local function RFFautocatch1()
+    local player = game.Players.LocalPlayer
+    local char = player.Character
+    if char then
+        local rightarm = char:FindFirstChild("Right Arm")
+        local leftarm = char:FindFirstChild("Left Arm")
+        
+        if rightarm then
+            rightarm.Massless = true
+            rightarm.Size = Vector3.new(4, 5, 4)
+        end
+        
+        if leftarm then
+            leftarm.Massless = true
+            leftarm.Size = Vector3.new(4, 5, 4)
+        end
+    end
+end
+---------------------------------------------------------------------------------
+local function RFFautocatch2()
+    local player = game.Players.LocalPlayer
+    local char = player.Character
+    if char then
+        local rightarm = char:FindFirstChild("Right Arm")
+        local leftarm = char:FindFirstChild("Left Arm")
+        
+        if rightarm then
+            rightarm.Massless = true
+            rightarm.Size = Vector3.new(3.5, 4.5, 3.5)
+        end
+        
+        if leftarm then
+            leftarm.Massless = true
+            leftarm.Size = Vector3.new(3.5, 4.5, 3.5)
+        end
+    end
+end
+---------------------------------------------------------------------------------
+local function RFFautocatch3()
+    local player = game.Players.LocalPlayer
+    local char = player.Character
+    if char then
+        local rightarm = char:FindFirstChild("Right Arm")
+        local leftarm = char:FindFirstChild("Left Arm")
+        
+        if rightarm then
+            rightarm.Massless = true
+            rightarm.Size = Vector3.new(3, 4, 3)
+        end
+        
+        if leftarm then
+            leftarm.Massless = true
+            leftarm.Size = Vector3.new(3, 4, 3)
+        end
+    end
+end
+---------------------------------------------------------------------------------
+local function RFFautocatch4()
+    local player = game.Players.LocalPlayer
+    local char = player.Character
+    if char then
+        local rightarm = char:FindFirstChild("Right Arm")
+        local leftarm = char:FindFirstChild("Left Arm")
+        
+        if rightarm then
+            rightarm.Massless = true
+            rightarm.Size = Vector3.new(2.5, 3.5, 2.5)
+        end
+        
+        if leftarm then
+            leftarm.Massless = true
+            leftarm.Size = Vector3.new(2.5, 3.5, 2.5)
+        end
+    end
+end
+---------------------------------------------------------------------------------
+local function RFFautocatch5()
+    local player = game.Players.LocalPlayer
+    local char = player.Character
+    if char then
+        local rightarm = char:FindFirstChild("Right Arm")
+        local leftarm = char:FindFirstChild("Left Arm")
+        
+        if rightarm then
+            rightarm.Massless = true
+            rightarm.Size = Vector3.new(2, 3, 2)
+        end
+        
+        if leftarm then
+            leftarm.Massless = true
+            leftarm.Size = Vector3.new(2, 3, 2)
+        end
+    end
+end
+---------------------------------------------------------------------------------
+local function RFFautocatch6()
+    local player = game.Players.LocalPlayer
+    local char = player.Character
+    if char then
+        local rightarm = char:FindFirstChild("Right Arm")
+        local leftarm = char:FindFirstChild("Left Arm")
+        
+        if rightarm then
+            rightarm.Massless = true
+            rightarm.Size = Vector3.new(1.5, 2.5, 1.5)
+        end
+        
+        if leftarm then
+            leftarm.Massless = true
+            leftarm.Size = Vector3.new(1.5, 2.5, 1.5)
+        end
+    end
+end
+---------------------------------------------------------------------------------
+local function RFFautocatch7()
+    local player = game.Players.LocalPlayer
+    local char = player.Character
+    if char then
+        local rightarm = char:FindFirstChild("Right Arm")
+        local leftarm = char:FindFirstChild("Left Arm")
+        
+        if rightarm then
+            rightarm.Massless = true
+            rightarm.Size = Vector3.new(1, 2, 1)
+        end
+        
+        if leftarm then
+            leftarm.Massless = true
+            leftarm.Size = Vector3.new(1, 2, 1)
+        end
+    end
+end
+---------------------------------------------------------------------------------
+-- Dropdown
+local Dropdown = Tabs.RFF:AddDropdown("Dropdown", {
+    Title = "AutoCatch Picker",
+    Values = {"1", "2", "3", "4", "5", "6", "7"},
+    Multi = false,
+    Default = "7", -- starts disabled
+})
+
+Dropdown:SetValue("7") -- immediately set to value 7
+
+Dropdown:OnChanged(function(Value)
+    print("Dropdown changed:", Value)
+
+    if Value == "1" then
+        RFFautocatch1()
+    elseif Value == "2" then
+        RFFautocatch2()
+    elseif Value == "3" then
+        RFFautocatch3()
+    elseif Value == "4" then
+        RFFautocatch4()
+    elseif Value == "5" then
+        RFFautocatch5()
+    elseif Value == "6" then
+        RFFautocatch6()
+    elseif Value == "7" then
+        RFFautocatch7()
+    end
+end)
+---------------------------------------------------------------------------------
+ Tabs.VRF:AddParagraph({
+        Title = "Value Control",
+        Content = "1 - Most obvious, 6 - Least obvious and 7 to disable."
+    })
+---------------------------------------------------------------------------------
+  Tabs.VRF:AddParagraph({
+        Title = "WARNING WARNING WARNING",
+        Content = "Applying one of these below will log your cheat into phyzuns webhook if you havent deleted the anticheat I would NOT advise using anything below without somehow removing the anticheat"
+    })
+---------------------------------------------------------------------------------
+local function VRFbigfoot1()
+    local player = game.Players.LocalPlayer
+    local char = player.Character
+    if char then
+        local rl = char:FindFirstChild("RL")
+        local ll = char:FindFirstChild("LL")
+        
+        if rl then
+            rl.Massless = true
+            rl.Size = Vector3.new(4, 5, 4)
+        end
+        
+        if ll then
+            ll.Massless = true
+            ll.Size = Vector3.new(4, 5, 4)
+        end
+    end
+end
+---------------------------------------------------------------------------------
+local function VRFbigfoot2()
+    local player = game.Players.LocalPlayer
+    local char = player.Character
+    if char then
+        local rl = char:FindFirstChild("RL")
+        local ll = char:FindFirstChild("LL")
+        
+        if rl then
+            rl.Massless = true
+            rl.Size = Vector3.new(3.5, 4.5, 3.5)
+        end
+        
+        if ll then
+            ll.Massless = true
+            ll.Size = Vector3.new(3.5, 4.5, 3.5)
+        end
+    end
+end
+---------------------------------------------------------------------------------
+local function VRFbigfoot3()
+    local player = game.Players.LocalPlayer
+    local char = player.Character
+    if char then
+        local rl = char:FindFirstChild("RL")
+        local ll = char:FindFirstChild("LL")
+        
+        if rl then
+            rl.Massless = true
+            rl.Size = Vector3.new(3, 4, 3)
+        end
+        
+        if ll then
+            ll.Massless = true
+            ll.Size = Vector3.new(3, 4, 3)
+        end
+    end
+end
+---------------------------------------------------------------------------------
+local function VRFbigfoot4()
+    local player = game.Players.LocalPlayer
+    local char = player.Character
+    if char then
+        local rl = char:FindFirstChild("RL")
+        local ll = char:FindFirstChild("LL")
+        
+        if rl then
+            rl.Massless = true
+            rl.Size = Vector3.new(2.5, 3.5, 2.5)
+        end
+        
+        if ll then
+            ll.Massless = true
+            ll.Size = Vector3.new(2.5, 3.5, 2.5)
+        end
+    end
+end
+---------------------------------------------------------------------------------
+local function VRFbigfoot5()
+    local player = game.Players.LocalPlayer
+    local char = player.Character
+    if char then
+        local rl = char:FindFirstChild("RL")
+        local ll = char:FindFirstChild("LL")
+        
+        if rl then
+            rl.Massless = true
+            rl.Size = Vector3.new(2, 3, 2)
+        end
+        
+        if ll then
+            ll.Massless = true
+            ll.Size = Vector3.new(2, 3, 2)
+        end
+    end
+end
+---------------------------------------------------------------------------------
+local function VRFbigfoot6()
+    local player = game.Players.LocalPlayer
+    local char = player.Character
+    if char then
+        local rl = char:FindFirstChild("RL")
+        local ll = char:FindFirstChild("LL")
+        
+        if rl then
+            rl.Massless = true
+            rl.Size = Vector3.new(1.5, 2.5, 1.5)
+        end
+        
+        if ll then
+            ll.Massless = true
+            ll.Size = Vector3.new(1.5, 2.5, 1.5)
+        end
+    end
+end
+---------------------------------------------------------------------------------
+local function VRFbigfoot7()
+    local player = game.Players.LocalPlayer
+    local char = player.Character
+    if char then
+        local rl = char:FindFirstChild("RL")
+        local ll = char:FindFirstChild("LL")
+        
+        if rl then
+            rl.Massless = true
+            rl.Size = Vector3.new(1, 2, 1)
+        end
+        
+        if ll then
+            ll.Massless = true
+            ll.Size = Vector3.new(1, 2, 1)
+        end
+    end
+end
+---------------------------------------------------------------------------------
+-- Dropdown
+local Dropdown = Tabs.VRF:AddDropdown("Dropdown", {
+    Title = "BigFoot Picker",
+    Values = {"1", "2", "3", "4", "5", "6", "7"},
+    Multi = false,
+    Default = "7", -- starts disabled
+})
+
+Dropdown:SetValue("7") -- immediately set to value 7
+
+Dropdown:OnChanged(function(Value)
+    print("Dropdown changed:", Value)
+
+    if Value == "1" then
+        VRFbigfoot1()
+    elseif Value == "2" then
+        VRFbigfoot2()
+    elseif Value == "3" then
+        VRFbigfoot3()
+    elseif Value == "4" then
+        VRFbigfoot4()
+    elseif Value == "5" then
+        VRFbigfoot5()
+    elseif Value == "6" then
+        VRFbigfoot6()
+    elseif Value == "7" then
+        VRFbigfoot7()
+    end
+end)
+---------------------------------------------------------------------------------
+local function VRFbighead1()
+    local player = game.Players.LocalPlayer
+    local char = player.Character
+    if char then
+        local head = char:FindFirstChild("H")
+        
+        if head then
+            head.Massless = true
+	    head.CanCollide = false
+	    head.Transparency = 1
+            head.Size = Vector3.new(5, 4, 4)
+        end
+    end
+end
+---------------------------------------------------------------------------------
+local function VRFbighead2()
+    local player = game.Players.LocalPlayer
+    local char = player.Character
+    if char then
+        local head = char:FindFirstChild("H")
+        
+        if head then
+            head.Massless = true
+	    head.CanCollide = false
+	    head.Transparency = 1
+            head.Size = Vector3.new(4.5, 3.5, 3.5)
+        end
+    end
+end
+---------------------------------------------------------------------------------
+local function VRFbighead3()
+    local player = game.Players.LocalPlayer
+    local char = player.Character
+    if char then
+        local head = char:FindFirstChild("H")
+        
+        if head then
+            head.Massless = true
+	    head.CanCollide = false
+	    head.Transparency = 1
+            head.Size = Vector3.new(4, 3, 3)
+        end
+    end
+end
+---------------------------------------------------------------------------------
+local function VRFbighead4()
+    local player = game.Players.LocalPlayer
+    local char = player.Character
+    if char then
+        local head = char:FindFirstChild("H")
+        
+        if head then
+            head.Massless = true
+	    head.CanCollide = false
+	    head.Transparency = 1
+            head.Size = Vector3.new(3.5, 2.5, 2.5)
+        end
+    end
+end
+---------------------------------------------------------------------------------
+local function VRFbighead5()
+    local player = game.Players.LocalPlayer
+    local char = player.Character
+    if char then
+        local head = char:FindFirstChild("H")
+        
+        if head then
+            head.Massless = true
+	    head.CanCollide = false
+	    head.Transparency = 1
+            head.Size = Vector3.new(3, 2, 2)
+        end
+    end
+end
+---------------------------------------------------------------------------------
+local function VRFbighead6()
+    local player = game.Players.LocalPlayer
+    local char = player.Character
+    if char then
+        local head = char:FindFirstChild("H")
+        
+        if head then
+            head.Massless = true
+	    head.CanCollide = false
+	    head.Transparency = 1
+            head.Size = Vector3.new(2.5, 1.5, 1.5)
+        end
+    end
+end
+---------------------------------------------------------------------------------
+local function VRFbighead7()
+    local player = game.Players.LocalPlayer
+    local char = player.Character
+    if char then
+        local head = char:FindFirstChild("H")
+        
+        if head then
+            head.Massless = true
+            head.Size = Vector3.new(2, 1, 1)
+        end
+    end
+end
+---------------------------------------------------------------------------------
+-- Dropdown
+local Dropdown = Tabs.VRF:AddDropdown("Dropdown", {
+    Title = "BigHead Picker",
+    Values = {"1", "2", "3", "4", "5", "6", "7"},
+    Multi = false,
+    Default = "7", -- starts disabled
+})
+
+Dropdown:SetValue("7") -- immediately set to value 7
+
+Dropdown:OnChanged(function(Value)
+    print("Dropdown changed:", Value)
+
+    if Value == "1" then
+        VRFbighead1()
+    elseif Value == "2" then
+        VRFbighead2()
+    elseif Value == "3" then
+        VRFbighead3()
+    elseif Value == "4" then
+        VRFbighead4()
+    elseif Value == "5" then
+        VRFbighead5()
+    elseif Value == "6" then
+        VRFbighead6()
+    elseif Value == "7" then
+        VRFbighead7()
+    end
+end)
+---------------------------------------------------------------------------------
+-- Reusable functions
+local function VRFbigtorso1()
+    local player = game.Players.LocalPlayer
+    local char = player.Character
+    if char then
+        local torso = char:FindFirstChild("T")
+        
+        if torso then
+            torso.Massless = true
+	    torso.Transparency = 1
+            torso.Size = Vector3.new(5, 5, 4)
+        end
+    end
+end
+---------------------------------------------------------------------------------
+local function VRFbigtorso2()
+    local player = game.Players.LocalPlayer
+    local char = player.Character
+    if char then
+        local torso = char:FindFirstChild("T")
+        
+        if torso then
+            torso.Massless = true
+	    torso.Transparency = 1
+            torso.Size = Vector3.new(4.5, 4.5, 3.5)
+        end
+    end
+end
+---------------------------------------------------------------------------------
+local function VRFbigtorso3()
+    local player = game.Players.LocalPlayer
+    local char = player.Character
+    if char then
+        local torso = char:FindFirstChild("T")
+        
+        if torso then
+            torso.Massless = true
+	    torso.Transparency = 1
+            torso.Size = Vector3.new(4, 4, 3)
+        end
+    end
+end
+---------------------------------------------------------------------------------
+local function VRFbigtorso4()
+    local player = game.Players.LocalPlayer
+    local char = player.Character
+    if char then
+        local torso = char:FindFirstChild("T")
+        
+        if torso then
+            torso.Massless = true
+	    torso.Transparency = 1
+            torso.Size = Vector3.new(3.5, 3.5, 2.5)
+        end
+    end
+end
+---------------------------------------------------------------------------------
+local function VRFbigtorso5()
+    local player = game.Players.LocalPlayer
+    local char = player.Character
+    if char then
+        local torso = char:FindFirstChild("T")
+        
+        if torso then
+            torso.Massless = true
+	    torso.Transparency = 1
+            torso.Size = Vector3.new(3, 3, 2)
+        end
+    end
+end
+---------------------------------------------------------------------------------
+local function VRFbigtorso6()
+    local player = game.Players.LocalPlayer
+    local char = player.Character
+    if char then
+        local torso = char:FindFirstChild("T")
+        
+        if torso then
+            torso.Massless = true
+	    torso.Transparency = 1
+            torso.Size = Vector3.new(2.5, 2.5, 1.5)
+        end
+    end
+end
+---------------------------------------------------------------------------------
+local function VRFbigtorso7()
+    local player = game.Players.LocalPlayer
+    local char = player.Character
+    if char then
+        local torso = char:FindFirstChild("T")
+        
+        if torso then
+            torso.Massless = true
+            torso.Size = Vector3.new(2, 2, 1)
+        end
+    end
+end
+---------------------------------------------------------------------------------
+-- Dropdown
+local Dropdown = Tabs.VRF:AddDropdown("Dropdown", {
+    Title = "BigChest Picker",
+    Values = {"1", "2", "3", "4", "5", "6", "7"},
+    Multi = false,
+    Default = "7", -- starts disabled
+})
+
+Dropdown:SetValue("7") -- immediately set to value 7
+
+Dropdown:OnChanged(function(Value)
+    print("Dropdown changed:", Value)
+
+    if Value == "1" then
+        VRFbigtorso1()
+    elseif Value == "2" then
+        VRFbigtorso2()
+    elseif Value == "3" then
+        VRFbigtorso3()
+    elseif Value == "4" then
+        VRFbigtorso4()
+    elseif Value == "5" then
+        VRFbigtorso5()
+    elseif Value == "6" then
+        VRFbigtorso6()
+    elseif Value == "7" then
+        VRFbigtorso7()
+    end
+end)
+---------------------------------------------------------------------------------
+-- Reusable functions
+local function VRFautocatch1()
+    local player = game.Players.LocalPlayer
+    local char = player.Character
+    if char then
+        local rightarm = char:FindFirstChild("RA")
+        local leftarm = char:FindFirstChild("LA")
+        
+        if rightarm then
+            rightarm.Massless = true
+            rightarm.Size = Vector3.new(4, 5, 4)
+        end
+        
+        if leftarm then
+            leftarm.Massless = true
+            leftarm.Size = Vector3.new(4, 5, 4)
+        end
+    end
+end
+---------------------------------------------------------------------------------
+local function VRFautocatch2()
+    local player = game.Players.LocalPlayer
+    local char = player.Character
+    if char then
+        local rightarm = char:FindFirstChild("RA")
+        local leftarm = char:FindFirstChild("LA")
+        
+        if rightarm then
+            rightarm.Massless = true
+            rightarm.Size = Vector3.new(3.5, 4.5, 3.5)
+        end
+        
+        if leftarm then
+            leftarm.Massless = true
+            leftarm.Size = Vector3.new(3.5, 4.5, 3.5)
+        end
+    end
+end
+---------------------------------------------------------------------------------
+local function VRFautocatch3()
+    local player = game.Players.LocalPlayer
+    local char = player.Character
+    if char then
+        local rightarm = char:FindFirstChild("RA")
+        local leftarm = char:FindFirstChild("LA")
+        
+        if rightarm then
+            rightarm.Massless = true
+            rightarm.Size = Vector3.new(3, 4, 3)
+        end
+        
+        if leftarm then
+            leftarm.Massless = true
+            leftarm.Size = Vector3.new(3, 4, 3)
+        end
+    end
+end
+---------------------------------------------------------------------------------
+local function VRFautocatch4()
+    local player = game.Players.LocalPlayer
+    local char = player.Character
+    if char then
+        local rightarm = char:FindFirstChild("RA")
+        local leftarm = char:FindFirstChild("LA")
+        
+        if rightarm then
+            rightarm.Massless = true
+            rightarm.Size = Vector3.new(2.5, 3.5, 2.5)
+        end
+        
+        if leftarm then
+            leftarm.Massless = true
+            leftarm.Size = Vector3.new(2.5, 3.5, 2.5)
+        end
+    end
+end
+---------------------------------------------------------------------------------
+local function VRFautocatch5()
+    local player = game.Players.LocalPlayer
+    local char = player.Character
+    if char then
+        local rightarm = char:FindFirstChild("RA")
+        local leftarm = char:FindFirstChild("LA")
+        
+        if rightarm then
+            rightarm.Massless = true
+            rightarm.Size = Vector3.new(2, 3, 2)
+        end
+        
+        if leftarm then
+            leftarm.Massless = true
+            leftarm.Size = Vector3.new(2, 3, 2)
+        end
+    end
+end
+---------------------------------------------------------------------------------
+local function VRFautocatch6()
+    local player = game.Players.LocalPlayer
+    local char = player.Character
+    if char then
+        local rightarm = char:FindFirstChild("RA")
+        local leftarm = char:FindFirstChild("LA")
+        
+        if rightarm then
+            rightarm.Massless = true
+            rightarm.Size = Vector3.new(1.5, 2.5, 1.5)
+        end
+        
+        if leftarm then
+            leftarm.Massless = true
+            leftarm.Size = Vector3.new(1.5, 2.5, 1.5)
+        end
+    end
+end
+---------------------------------------------------------------------------------
+local function VRFautocatch7()
+    local player = game.Players.LocalPlayer
+    local char = player.Character
+    if char then
+        local rightarm = char:FindFirstChild("RA")
+        local leftarm = char:FindFirstChild("LA")
+        
+        if rightarm then
+            rightarm.Massless = true
+            rightarm.Size = Vector3.new(1, 2, 1)
+        end
+        
+        if leftarm then
+            leftarm.Massless = true
+            leftarm.Size = Vector3.new(1, 2, 1)
+        end
+    end
+end
+---------------------------------------------------------------------------------
+-- Dropdown
+local Dropdown = Tabs.VRF:AddDropdown("Dropdown", {
+    Title = "AutoCatch Picker",
+    Values = {"1", "2", "3", "4", "5", "6", "7"},
+    Multi = false,
+    Default = "7", -- starts disabled
+})
+
+Dropdown:SetValue("7") -- immediately set to value 7
+
+Dropdown:OnChanged(function(Value)
+    print("Dropdown changed:", Value)
+
+    if Value == "1" then
+        VRFautocatch1()
+    elseif Value == "2" then
+        VRFautocatch2()
+    elseif Value == "3" then
+        VRFautocatch3()
+    elseif Value == "4" then
+        VRFautocatch4()
+    elseif Value == "5" then
+        VRFautocatch5()
+    elseif Value == "6" then
+        VRFautocatch6()
+    elseif Value == "7" then
+        VRFautocatch7()
+    end
+end)
+---------------------------------------------------------------------------------
+
+
+-- Addons:
+-- SaveManager (Allows you to have a configuration system)
+-- InterfaceManager (Allows you to have a interface managment system)
+
+-- Hand the library over to our managers
+SaveManager:SetLibrary(Fluent)
+InterfaceManager:SetLibrary(Fluent)
+
+-- Ignore keys that are used by ThemeManager.
+-- (we dont want configs to save themes, do we?)
+SaveManager:IgnoreThemeSettings()
+
+-- You can add indexes of elements the save manager should ignore
+SaveManager:SetIgnoreIndexes({})
+
+-- use case for doing it this way:
+-- a script hub could have themes in a global folder
+-- and game configs in a separate folder per game
+InterfaceManager:SetFolder("FluentScriptHub")
+SaveManager:SetFolder("FluentScriptHub/specific-game")
+
+InterfaceManager:BuildInterfaceSection(Tabs.Settings)
+SaveManager:BuildConfigSection(Tabs.Settings)
+
+
+Window:SelectTab(1)
+
+Fluent:Notify({
+    Title = "Pumpkin Hub",
+    Content = "The script has been loaded.",
+    Duration = 8
+})
+
+-- You can use the SaveManager:LoadAutoloadConfig() to load a config
+-- which has been marked to be one that auto loads!
+SaveManager:LoadAutoloadConfig()

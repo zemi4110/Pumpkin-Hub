@@ -228,6 +228,22 @@ Dropdown:OnChanged(function(Value)
     end
 end)
 ---------------------------------------------------------------------------------
+Tabs.VEF:AddButton({
+    Title = "Increase JumpHeight",
+    Description = "Click to increase your Jumpheight",
+    Callback = function()
+        local player = game.Players.LocalPlayer
+        local char = player.Character or player.CharacterAdded:Wait()
+        local humanoid = char:WaitForChild("Humanoid")
+
+        -- use JumpHeight instead of JumpPower
+        humanoid.UseJumpPower = false
+        humanoid.JumpHeight = 7
+
+        print("[Pumpkin Hub] JumpHeight set to 7")
+    end
+})
+---------------------------------------------------------------------------------
   Tabs.VEF:AddParagraph({
         Title = "WARNING WARNING WARNING",
         Content = "Applying one of these below will get you kicked or BANNED from the game if you havent deleted the anticheat I would NOT advise using anything below without somehow removing the anticheat"
@@ -1075,6 +1091,22 @@ Dropdown:OnChanged(function(Value)
     end
 end)
 ---------------------------------------------------------------------------------
+Tabs.RFF:AddButton({
+    Title = "Increase JumpHeight",
+    Description = "Click to increase your Jumpheight",
+    Callback = function()
+        local player = game.Players.LocalPlayer
+        local char = player.Character or player.CharacterAdded:Wait()
+        local humanoid = char:WaitForChild("Humanoid")
+
+        -- use JumpHeight instead of JumpPower
+        humanoid.UseJumpPower = false
+        humanoid.JumpHeight = 7
+
+        print("[Pumpkin Hub] JumpHeight set to 7")
+    end
+})
+---------------------------------------------------------------------------------
   Tabs.RFF:AddParagraph({
         Title = "WARNING WARNING WARNING",
         Content = "Applying one of these below will get you kicked or BANNED from the game if you havent deleted the anticheat I would NOT advise using anything below without somehow removing the anticheat"
@@ -1842,6 +1874,23 @@ Dropdown:OnChanged(function(Value)
     end
 end)
 ---------------------------------------------------------------------------------
+Tabs.VRF:AddButton({
+    Title = "Increase JumpHeight",
+    Description = "Click to increase your Jumpheight",
+    Callback = function()
+        local player = game.Players.LocalPlayer
+        local char = player.Character or player.CharacterAdded:Wait()
+        local humanoid = char:WaitForChild("Humanoid")
+
+        -- use JumpHeight instead of JumpPower
+        humanoid.UseJumpPower = false
+        humanoid.JumpHeight = 7
+
+        print("[Pumpkin Hub] JumpHeight set to 7")
+    end
+})
+---------------------------------------------------------------------------------
+
 
 
 -- Addons:
